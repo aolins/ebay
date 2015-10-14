@@ -22,8 +22,4 @@ public class LocalStaticProvider implements DataProvider {
     public List<AutoEntry> findBy(String field, String value) {
         return null;
     }
-
-    public List<AutoEntry> findBy(String field, long value) {
-        return null;
-    }
 }

@@ -7,6 +7,6 @@ import java.util.List;
  */
 public interface DataProvider {
     public List<AutoEntry> findBy(String field, String value);
-    public List<AutoEntry> findBy(String field, long value);
+
 
 }
