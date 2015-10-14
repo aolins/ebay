@@ -46,7 +46,7 @@ public class Search {
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@PathParam("query") String query) throws Exception{
         List<AutoEntry> c = provider.findBy(query);
-        if (c==null){
+        if (c==null || c.isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).build();
         }else{
             GenericEntity<List<AutoEntry>> entity = new GenericEntity<List<AutoEntry>>(c) {};

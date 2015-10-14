@@ -6,6 +6,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import de.mobile.aol.Main;
+import de.mobile.aol.data.AutoEntry;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,11 +33,29 @@ public class SearchResultTest {
 
 
     @Test
-    public void testAllElements()throws Exception {
+    public void testAudi()throws Exception {
          String s = service.path("search/Audi").getRequestBuilder().get(String.class);
         Gson g = new Gson();
         AutoEntryArray a = g.fromJson(s, AutoEntryArray.class);
         org.junit.Assert.assertEquals("ACCTEST 3: page should results foe make", a.autoEntry.length, 2);
+    }
+
+    @Test
+    public void testFord()throws Exception {
+        String s = service.path("search/Ford").getRequestBuilder().get(String.class);
+        Gson g = new Gson();
+        OneAutoEntry a = g.fromJson(s, OneAutoEntry.class);
+        org.junit.Assert.assertEquals("ACCTEST 3: page should have 1 ford", a.autoEntry, new AutoEntry("Persimmon red", "Ford", "Mustang", "convertable","", 32000));
+    }
+
+    @Test
+    public void testTrabant()throws Exception {
+        try {
+            String s = service.path("search/Trabant").getRequestBuilder().get(String.class);
+            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should never be hit", false);
+        }catch (Exception e) {
+            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should be hit", true);
+        }
     }
 
 
