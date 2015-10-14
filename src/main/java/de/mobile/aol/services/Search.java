@@ -45,7 +45,7 @@ public class Search {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@PathParam("query") String query) throws Exception{
-        List<AutoEntry> c = provider.findBy(null, query);
+        List<AutoEntry> c = provider.findBy(query);
         if (c==null){
             return Response.status(Response.Status.NOT_FOUND).build();
         }else{

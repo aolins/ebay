@@ -20,7 +20,7 @@ public class AlwaysOneEntryStaticProvider implements DataProvider {
 
     }
 
-    public List<AutoEntry> findBy(String field, String value) {
+    public List<AutoEntry> findBy(String value) {
         List<AutoEntry> res = new ArrayList<AutoEntry>(1);
         res.addAll(dataSet);
         return res;

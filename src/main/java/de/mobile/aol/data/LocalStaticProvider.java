@@ -20,7 +20,7 @@ public class LocalStaticProvider implements DataProvider {
         dataSet.add(new AutoEntry("Scarlet red", "Audi", "A4", "limousine","", 4500));
     }
 
-    public List<AutoEntry> findBy(String field, String value) {
+    public List<AutoEntry> findBy(String value) {
         List<AutoEntry> res = new ArrayList<AutoEntry>(5);
         res.addAll(dataSet);
         return res;
