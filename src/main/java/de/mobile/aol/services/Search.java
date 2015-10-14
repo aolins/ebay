@@ -27,7 +27,8 @@ public class Search {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response emptyGet(){
-        return Response.ok("-31").build();
+        //totally mocked endpoint
+        return Response.ok("search specification page").build();
     }
 
 

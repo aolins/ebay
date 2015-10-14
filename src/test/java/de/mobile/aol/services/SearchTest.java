@@ -21,11 +21,7 @@ public class SearchTest {
     public void setUp() throws Exception {
         Client client = Client.create(new DefaultClientConfig());
         service = client.resource(Main.BASE_URI);
-
-
         st = Main.start(new TestModule());
-
-
     }
 
     @After
@@ -43,8 +39,7 @@ public class SearchTest {
     @Test
     public void testEmptySearch() throws Exception {
         String s = service.path("search").getRequestBuilder().get(String.class);
-        org.junit.Assert.assertEquals(s,"-31");
-
+        org.junit.Assert.assertEquals("ACCTEST 1: Should show empty search spec page.",s,"search specification page");
     }
 
 }
