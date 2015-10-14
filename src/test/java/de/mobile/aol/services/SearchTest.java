@@ -32,7 +32,7 @@ public class SearchTest {
     @Test
     public void testGet() throws Exception {
         String s = service.path("search/ping").getRequestBuilder().get(String.class);
-        org.junit.Assert.assertEquals(s, "-31" );
+        org.junit.Assert.assertEquals(s, "-31");
 
     }
 
@@ -41,5 +41,7 @@ public class SearchTest {
         String s = service.path("search").getRequestBuilder().get(String.class);
         org.junit.Assert.assertEquals("ACCTEST 1: Should show empty search spec page.",s,"search specification page");
     }
+
+
 
 }

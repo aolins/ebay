@@ -1,5 +1,6 @@
 package de.mobile.aol.data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,8 @@ public class LocalStaticProvider implements DataProvider {
     }
 
     public List<AutoEntry> findBy(String field, String value) {
-        return null;
+        List<AutoEntry> res = new ArrayList<AutoEntry>(5);
+        res.addAll(dataSet);
+        return res;
     }
 }

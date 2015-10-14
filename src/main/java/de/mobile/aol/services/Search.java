@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -48,7 +49,9 @@ public class Search {
         if (c==null){
             return Response.status(Response.Status.NOT_FOUND).build();
         }else{
-            return Response.ok(c).build();
+            GenericEntity<List<AutoEntry>> entity = new GenericEntity<List<AutoEntry>>(c) {};
+            Response response = Response.ok(entity).build();
+            return response;
         }
     }
 
