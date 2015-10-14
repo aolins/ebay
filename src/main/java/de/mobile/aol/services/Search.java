@@ -47,7 +47,7 @@ public class Search {
     public Response get(@PathParam("query") String query) throws Exception{
         List<AutoEntry> c = provider.findBy(query);
         if (c==null || c.isEmpty()){
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.ok("sorry, no cars found").build();
         }else{
             GenericEntity<List<AutoEntry>> entity = new GenericEntity<List<AutoEntry>>(c) {};
             Response response = Response.ok(entity).build();

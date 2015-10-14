@@ -20,6 +20,8 @@ public class LocalStaticProvider implements DataProvider {
     public List<AutoEntry> findBy(String value) {
         List<AutoEntry> res = new ArrayList<AutoEntry>(5);
 
+
+
         StringTokenizer st = new StringTokenizer(value, " ", false);
 
         Map<String, Set<AutoEntry>> results = new HashMap<String, Set<AutoEntry>>();

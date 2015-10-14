@@ -50,12 +50,11 @@ public class SearchResultTest {
 
     @Test
     public void testTrabant()throws Exception {
-        try {
+
             String s = service.path("search/Trabant").getRequestBuilder().get(String.class);
-            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should never be hit", false);
-        }catch (Exception e) {
-            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should be hit", true);
-        }
+            org.junit.Assert.assertEquals("ACCTEST 7: page should have 0 trabant;", s, "sorry, no cars found");
+
+
     }
 
     @Test
@@ -76,12 +75,19 @@ public class SearchResultTest {
 
     @Test
     public void testAudiMustang()throws Exception {
-        try {
+
             String s = service.path("search/Audi Mustang").getRequestBuilder().get(String.class);
-            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should never be hit", false);
-        }catch (Exception e) {
-            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should be hit", true);
-        }
+            org.junit.Assert.assertEquals("ACCTEST 7: page should have 0 audi mustang;", s, "sorry, no cars found");
+
+    }
+
+
+    @Test
+    public void testRed()throws Exception {
+        String s = service.path("search/red").getRequestBuilder().get(String.class);
+        Gson g = new Gson();
+        AutoEntryArray a = g.fromJson(s, AutoEntryArray.class);
+        org.junit.Assert.assertEquals("ACCTEST 6: page should result in red ", a.autoEntry.length, 2);
     }
 
 }
