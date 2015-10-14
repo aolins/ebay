@@ -58,6 +58,13 @@ public class SearchResultTest {
         }
     }
 
+    @Test
+    public void testMustang()throws Exception {
+        String s = service.path("search/Mustang").getRequestBuilder().get(String.class);
+        Gson g = new Gson();
+        OneAutoEntry a = g.fromJson(s, OneAutoEntry.class);
+        org.junit.Assert.assertEquals("ACCTEST 3: page should have 1 Mustang", a.autoEntry, new AutoEntry("Persimmon red", "Ford", "Mustang", "convertable","", 32000));
+    }
 
 
 }
