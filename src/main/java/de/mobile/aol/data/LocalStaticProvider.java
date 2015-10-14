@@ -1,9 +1,6 @@
 package de.mobile.aol.data;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by aol on 2015.10.14..
@@ -23,13 +20,35 @@ public class LocalStaticProvider implements DataProvider {
     public List<AutoEntry> findBy(String value) {
         List<AutoEntry> res = new ArrayList<AutoEntry>(5);
 
-        for (AutoEntry autoEntry : dataSet) {
-            if (autoEntry.getMake().toLowerCase().contains(value.toLowerCase())){
-                res.add(autoEntry);
-            }else if (autoEntry.getModel().toLowerCase().contains(value.toLowerCase())){
-                res.add(autoEntry);
+        StringTokenizer st = new StringTokenizer(value, " ", false);
+
+        Map<String, Set<AutoEntry>> results = new HashMap<String, Set<AutoEntry>>();
+
+        while (st.hasMoreElements()) {
+            Set<AutoEntry> resultForToken = new HashSet<AutoEntry>();
+            String token = st.nextToken();
+            for (AutoEntry autoEntry : dataSet) {
+                if (autoEntry.getMake().toLowerCase().contains(token.toLowerCase())) {
+                    resultForToken.add(autoEntry);
+                } else if (autoEntry.getModel().toLowerCase().contains(token.toLowerCase())) {
+                    resultForToken.add(autoEntry);
+                }
+            }
+            results.put(token, resultForToken);
+        }
+
+        Set<AutoEntry>intersection = null;
+
+        for(Set<AutoEntry> set : results.values()){
+            if (intersection == null){
+                intersection = set;
+            }else{
+                intersection.retainAll(set);
             }
         }
+
+        res.addAll(intersection);
+
         return res;
     }
 }

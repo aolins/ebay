@@ -63,8 +63,25 @@ public class SearchResultTest {
         String s = service.path("search/Mustang").getRequestBuilder().get(String.class);
         Gson g = new Gson();
         OneAutoEntry a = g.fromJson(s, OneAutoEntry.class);
-        org.junit.Assert.assertEquals("ACCTEST 3: page should have 1 Mustang", a.autoEntry, new AutoEntry("Persimmon red", "Ford", "Mustang", "convertable","", 32000));
+        org.junit.Assert.assertEquals("ACCTEST 4: page should have 1 Mustang", a.autoEntry, new AutoEntry("Persimmon red", "Ford", "Mustang", "convertable","", 32000));
     }
 
+    @Test
+    public void testAudiA4()throws Exception {
+        String s = service.path("search/Audi a4").getRequestBuilder().get(String.class);
+        Gson g = new Gson();
+        AutoEntryArray a = g.fromJson(s, AutoEntryArray.class);
+        org.junit.Assert.assertEquals("ACCTEST 5: page should result in two a4 ", a.autoEntry.length, 2);
+    }
+
+    @Test
+    public void testAudiMustang()throws Exception {
+        try {
+            String s = service.path("search/Audi Mustang").getRequestBuilder().get(String.class);
+            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should never be hit", false);
+        }catch (Exception e) {
+            org.junit.Assert.assertTrue("ACCTEST 3: page should have 0 trabant; this should be hit", true);
+        }
+    }
 
 }
