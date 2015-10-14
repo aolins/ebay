@@ -34,6 +34,8 @@ public class LocalStaticProvider implements DataProvider {
                     resultForToken.add(autoEntry);
                 } else if (autoEntry.getModel().toLowerCase().contains(token.toLowerCase())) {
                     resultForToken.add(autoEntry);
+                }else if (autoEntry.getColor().toLowerCase().contains(token.toLowerCase())) {
+                    resultForToken.add(autoEntry);
                 }
             }
             results.put(token, resultForToken);
