@@ -22,7 +22,12 @@ public class LocalStaticProvider implements DataProvider {
 
     public List<AutoEntry> findBy(String value) {
         List<AutoEntry> res = new ArrayList<AutoEntry>(5);
-        res.addAll(dataSet);
+
+        for (AutoEntry autoEntry : dataSet) {
+            if (autoEntry.getMake().contains(value)){
+                res.add(autoEntry);
+            }
+        }
         return res;
     }
 }
