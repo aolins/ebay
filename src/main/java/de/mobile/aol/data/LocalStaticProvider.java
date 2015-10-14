@@ -24,7 +24,9 @@ public class LocalStaticProvider implements DataProvider {
         List<AutoEntry> res = new ArrayList<AutoEntry>(5);
 
         for (AutoEntry autoEntry : dataSet) {
-            if (autoEntry.getMake().contains(value)){
+            if (autoEntry.getMake().toLowerCase().contains(value.toLowerCase())){
+                res.add(autoEntry);
+            }else if (autoEntry.getModel().toLowerCase().contains(value.toLowerCase())){
                 res.add(autoEntry);
             }
         }
